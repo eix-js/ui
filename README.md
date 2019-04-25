@@ -90,7 +90,7 @@ export class DemoScene {
 ```
 
 
-The Portal decorator also has a debug mode (false by default) wich can be activated by passing true as the last argument of DemoScene:
+The Portal decorator also has a debug mode (false by default) wich can be activated by passing true as the last argument of Portal:
 
 ```ts
 export class DemoScene {
