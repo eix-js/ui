@@ -1,0 +1,4 @@
+-r ts-node/register
+-r source-map-support/register
+--recursive
+./test/**/*.test.ts

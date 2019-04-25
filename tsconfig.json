@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "types/*"
+            ]
+        },
+        "removeComments": true,
+        "sourceMap": true,
+        "lib": [
+            "es2015",
+            "es2017",
+            "dom"
+        ],
+        "esModuleInterop": true,
+        "noImplicitAny": true,
+        "alwaysStrict": true,
+        "moduleResolution": "Node",
+        "downlevelIteration": true,
+        "target": "es2017",
+        "outDir": "dist",
+        "declaration": true,
+        "module":"commonjs",
+        "experimentalDecorators": true
+    },
+    "include": [
+        "src",
+        "test"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

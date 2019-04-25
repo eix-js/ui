@@ -1,0 +1,38 @@
+{
+  "name": "@eix/ui",
+  "version": "1.0.0",
+  "description": "the ui for the eix game engine",
+  "main": "dist/src/main.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eix-js/ui"
+  },
+  "keywords": [
+    "ui",
+    "eix",
+    "engine",
+    "game",
+    "idk"
+  ],
+  "author": "Matei Adriel",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "rxjs": "^6.5.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/jsdom": "^12.2.3",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.7",
+    "chai": "^4.2.0",
+    "jsdom": "^15.0.0",
+    "mocha": "^6.1.4",
+    "source-map-support": "^0.5.12",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  }
+}
