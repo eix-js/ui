@@ -72,7 +72,7 @@ setInterval(() => {
 },1000)
 ```
 
-Because of the way typescript evaluates decorators, when you first create an instance of the class, the render property won't be defined, so the only way to stop it is by passing the 4th argument to Portal:
+Because of the way typescript evaluates decorators, when you first create an instance of the class, the render property won't be defined, so the only way to stop rendering is by passing the 4th argument to Portal:
 
 ```ts
 export class DemoScene {
@@ -90,7 +90,7 @@ export class DemoScene {
 ```
 
 
-The Portal decorator also has a debug mode (false by default) wich can be activated by passin true as the last arument of DemoScene:
+The Portal decorator also has a debug mode (false by default) wich can be activated by passing true as the last argument of DemoScene:
 
 ```ts
 export class DemoScene {
