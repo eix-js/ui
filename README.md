@@ -61,7 +61,7 @@ When you create a new instance, the renderer will automatically render your scen
 const instance = new DemoScene() // 0 will be displayed in the body
 ```
 
-You can play disable rendering:
+You can disable rendering:
 ```ts
 setInterval(() => {
     instance.render = !instance.render
