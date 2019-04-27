@@ -2,7 +2,7 @@
   "name": "@eix/ui",
   "version": "1.0.0",
   "description": "the ui for the eix game engine",
-  "main": "dist/src/main.js",
+  "main": "dist/main",
   "scripts": {
     "prepare": "tsc",
     "build": "tsc",
