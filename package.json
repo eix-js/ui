@@ -4,6 +4,7 @@
   "description": "the ui for the eix game engine",
   "main": "dist/src/main.js",
   "scripts": {
+    "prepare": "tsc",
     "build": "tsc",
     "test": "mocha"
   },
