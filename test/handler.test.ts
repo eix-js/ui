@@ -1,7 +1,8 @@
 import { changeHandler } from "../src/handler"
 import { Subject } from "rxjs";
-import { random } from "./random.util";
+import { random } from "./utils/random.util";
 import { expect } from "chai"
+import { isProxyKey } from "../src/keys";
 
 describe("Change handler", () => {
     it("should detect changes on an array", () => {
@@ -47,12 +48,12 @@ describe("Change handler", () => {
 
         //create new proxy
         const target = {
-            isProxy: false
+            [isProxyKey]: false
         }
         const wall = new Proxy(target, changeHandler(emitter))
 
         //should override the object
-        expect(wall.isProxy, "isProxy should be always true").to.be.true
+        expect(wall[isProxyKey], "isProxy should be always true").to.be.true
     })
 
     it("should serve proxies for nested objects", () => {
@@ -70,7 +71,7 @@ describe("Change handler", () => {
         for (let i = 0; i < depth; i++) {
             //create child object
             last.child = {
-                isProxy: false
+                [isProxyKey]: false
             }
 
             //update last
@@ -88,7 +89,7 @@ describe("Change handler", () => {
             //only do this if there is a child
             if (last.child) {
                 //assert
-                expect(last.child.isProxy, "isProxy should be true").to.be.true
+                expect(last.child[isProxyKey], "isProxy should be true").to.be.true
 
                 //update last
                 last = last.child

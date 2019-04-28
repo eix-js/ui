@@ -21,6 +21,7 @@
   "author": "Matei Adriel",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
+    "@eix/utils": "git+https://github.com/eix-js/utils.git",
     "rxjs": "^6.5.1"
   },
   "devDependencies": {

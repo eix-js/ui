@@ -1,7 +1,7 @@
 import { Portal } from "../src/portal"
 import { expect } from "chai"
 import jsdom from "jsdom";
-import { random } from "./random.util";
+import { random } from "./utils/random.util";
 
 const template = ({ count }: { count: number }) => `${count}`
 

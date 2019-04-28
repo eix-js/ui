@@ -43,10 +43,6 @@ export function Portal<T, K>(parent: renderable,
         //handle getters and setters
         //subscribe to the subject
         changeEmitter.subscribe(next => {
-            //update secret
-            secret = next
-
-
             //only do the following if in debug mode
             if (debug)
                 changeCount++
@@ -76,6 +72,8 @@ export function Portal<T, K>(parent: renderable,
                 result = new Proxy(next as Object, changeHandler<T>(changeEmitter))
             else
                 result = next //set secret to the value provided
+
+            secret = result
 
             //do something with the event
             changeEmitter.next(result)

@@ -1,9 +1,11 @@
 import { Subject } from "rxjs";
+import { isProxy } from "./interfaces";
+import { isProxyKey } from "./keys";
 
 export const changeHandler = <T>(emitter: Subject<T>) => ({
-    get(target: T, key: keyof T | "isProxy"): any {
+    get(target: T & isProxy, key: keyof T): any {
         //handle proxies
-        if (key == "isProxy")
+        if (key == isProxyKey)
             return true
 
         //handle objects

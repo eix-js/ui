@@ -136,7 +136,7 @@ instance.changeCount("count") // 2
 ```
 
 # Playing with the source:
-Run `npm test` to run test and `npm run build` to build/
+Run `npm test` to run tests and `npm run build` to build!
 
 
 
