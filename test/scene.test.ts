@@ -3,6 +3,9 @@ import { Scene } from "../src/scene"
 import jsdom from "jsdom";
 import { random } from "./utils/random.util";
 import { ScenePortal, renderKey } from "../src/main";
+import { SceneManager } from "../src/sceneManager"
+import { Test } from "mocha";
+import { sceneData } from "../src/interfaces";
 
 const { JSDOM } = jsdom;
 const dom = new JSDOM(`
@@ -83,6 +86,50 @@ describe("Scene", () => {
         //assert 
         expect(result, "the dom shouldnt be updated")
             .not.to.be.equal(instance.prop.toString())
+    })
+
+    it("should work with plugins",() => {
+        //create manager
+        const manager = new SceneManager(true)
+
+        //create test class
+        @Scene({
+            template: (target) => target.prop,
+            render: (target: string, parent) => {
+                parent.innerHTML = target
+            },
+            name: "testName",
+            plugins: [{
+                events: {
+                    start: (value:boolean,data:sceneData) => {
+                        expect(value).to.be.true
+
+                        //assert sceneData
+                        expect(data.name).to.be.equal("testName")
+                    },
+                    stop: (value:boolean) => {
+                        expect(value).to.be.false
+                    }
+                }
+            }]
+        })
+        class TestScene {
+            [renderKey] = false
+
+            @ScenePortal<number>()
+            prop = 0
+
+            constructor() { }
+        }
+
+        //create instance
+        const instance = new TestScene()
+
+        //add instance
+        manager.addScene("testScene",instance)
+
+        //trigger events
+        manager.switch("testScene","testScene")
     })
 })
 

@@ -48,11 +48,34 @@ export function Scene<T>(options: SceneOptions<T>) {
                 })
 
                 //subscribe to the scene events
-                this[sceneEmitter].pipe(filter(() => 
+                this[sceneEmitter].pipe(filter(() =>
                     this[automaticRenderDisabling] !== false //dont do it if <insert that long name here> is false
                 )).subscribe((value) => {
                     this[renderKey] = value
                 })
+
+                //use plugins
+                if (options.plugins) {
+                    //info for plugins
+                    const info = {
+                        name, parent, emitter, target,
+                        instance: this
+                    }
+
+
+                    this[sceneEmitter].subscribe(state => {
+                        //get name
+                        const eventName = state ? "start" : "stop"
+
+                        //filter plugins
+                        const plugins = options.plugins.filter(value =>
+                            value.events[eventName]
+                        )
+
+                        //run them
+                        plugins.forEach(func => func.events[eventName](state, info))
+                    })
+                }
             }
         }
     }
