@@ -18,11 +18,11 @@
         "alwaysStrict": true,
         "moduleResolution": "Node",
         "downlevelIteration": true,
-        "target": "es2017",
+        "target": "esnext",
         "outDir": "dist",
         "declaration": true,
-        "module":"commonjs",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "module":"commonjs"
     },
     "include": [
         "src/**/*.ts"

@@ -1,8 +1,8 @@
 import { decorable } from "@eix/utils"
 import { Subject } from "rxjs";
 import { SceneOptions } from "./interfaces";
-import { scenePortalsKey, sceneEmitter } from "./keys";
-import { switchMap } from "rxjs/operators"
+import { scenePortalsKey, sceneEmitter, renderKey, automaticRenderDisabling } from "./keys";
+import { filter } from "rxjs/operators"
 
 //unique ids for the div names
 let lastId = 0
@@ -23,6 +23,8 @@ export function Scene<T>(options: SceneOptions<T>) {
 
     return <T extends decorable>(target: T) => {
         return class extends target {
+            [automaticRenderDisabling]: boolean
+            [renderKey]: boolean
             [scenePortalsKey]: Subject<any>[]
             [sceneEmitter] = new Subject<boolean>()
 
@@ -38,9 +40,18 @@ export function Scene<T>(options: SceneOptions<T>) {
                     })
 
                 // subscribe to emitter
-                emitter.subscribe(() => {
+                emitter.pipe(filter(() =>
+                    this[renderKey] !== false //dont render if render is set to false
+                )).subscribe(() => {
                     //render
                     options.render(options.template(this), parent)
+                })
+
+                //subscribe to the scene events
+                this[sceneEmitter].pipe(filter(() => 
+                    this[automaticRenderDisabling] !== false //dont do it if <insert that long name here> is false
+                )).subscribe((value) => {
+                    this[renderKey] = value
                 })
             }
         }
